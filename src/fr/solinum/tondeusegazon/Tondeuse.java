@@ -4,13 +4,7 @@ public class Tondeuse {
 
 	private int positionX;
 	private int positionY;
-	private char orientation;
-
-	public Tondeuse(int positionX, int positionY, char orientation) {
-		this.positionX = positionX;
-		this.positionY = positionY;
-		this.orientation = orientation;
-	}
+	private int orientation;
 
 	public int getPositionX() {
 		return this.positionX;
@@ -20,60 +14,67 @@ public class Tondeuse {
 		return this.positionY;
 	}
 
-	public char getOrientation() {
+	public int getOrientation() {
 		return this.orientation;
 	}
 
-	public void deplacer(String mouvement) {
-
-		char nouvelleOrientation = this.orientation;
-
-		int i = 0;
-
-		while (i < mouvement.length()) {
-			if (nouvelleOrientation == 'n') {
-				if (mouvement.charAt(i) == 'a') {
-					this.positionY++;
-				} else if (mouvement.charAt(i) == 'g') {
-					nouvelleOrientation = 'w';
-				} else if (mouvement.charAt(i) == 'd') {
-					nouvelleOrientation = 'e';
-				}
-			} else if (nouvelleOrientation == 'e') {
-				if (mouvement.charAt(i) == 'a') {
-					this.positionX++;
-				} else if (mouvement.charAt(i) == 'g') {
-					nouvelleOrientation = 'n';
-				} else if (mouvement.charAt(i) == 'd') {
-					nouvelleOrientation = 's';
-				}
-			} else if (nouvelleOrientation == 's') {
-				if (mouvement.charAt(i) == 'a') {
-					this.positionY--;
-				} else if (mouvement.charAt(i) == 'g') {
-					nouvelleOrientation = 'e';
-				} else if (mouvement.charAt(i) == 'd') {
-					nouvelleOrientation = 'w';
-				}
-			} else if (nouvelleOrientation == 'w') {
-				if (mouvement.charAt(i) == 'a') {
-					this.positionX--;
-				} else if (mouvement.charAt(i) == 'g') {
-					nouvelleOrientation = 's';
-				} else if (mouvement.charAt(i) == 'd') {
-					nouvelleOrientation = 'n';
-				}
+	public void deplacer(String positionInitial,String ordreMouvement) {
+		
+		char directionTendeuse;
+		this.positionX=Character.getNumericValue(positionInitial.charAt(0));//test
+		System.out.println(this.positionX);
+		this.positionY=Character.getNumericValue(positionInitial.charAt(1));
+		directionTendeuse=positionInitial.charAt(2);
+		
+		int i=0;
+		char ordre;
+		while (i < ordreMouvement.length()) {
+			ordre=ordreMouvement.charAt(i);
+			if(ordre!=' ') {
+				if (directionTendeuse == 'n') {
+					if (ordre == 'a') {
+						this.positionY++;
+					} else if (ordre == 'g') {
+						directionTendeuse = 'w';
+					} else if (ordre == 'd') {
+						directionTendeuse = 'e';
+					}
+				} else if (directionTendeuse == 'e') {
+					if (ordre == 'a') {
+						this.positionX++;
+					} else if (ordre == 'g') {
+						directionTendeuse = 'n';
+					} else if (ordre == 'd') {
+						directionTendeuse = 's';
+					}
+				} else if (directionTendeuse == 's') {
+					if (ordre == 'a') {
+						this.positionY--;
+					} else if (ordre == 'g') {
+						directionTendeuse = 'e';
+					} else if (ordre == 'd') {
+						directionTendeuse = 'w';
+					}
+				} else if (directionTendeuse == 'w') {
+					if (ordre == 'a') {
+						this.positionX--;
+					} else if (ordre == 'g') {
+						directionTendeuse = 's';
+					} else if (ordre == 'd') {
+						directionTendeuse = 'n';
+					}
+				}	
 			}
 			i++;
 		}
-		String orientationAfficher;
-		if (nouvelleOrientation == 'n') {
+		String orientationAfficher="";
+		if (directionTendeuse == 'n') {
 			orientationAfficher = "Nord";
-		} else if (nouvelleOrientation == 'e') {
+		} else if (directionTendeuse == 'e') {
 			orientationAfficher = "Est";
-		} else if (nouvelleOrientation == 's') {
+		} else if (directionTendeuse == 's') {
 			orientationAfficher = "Sud";
-		} else {
+		} else if (directionTendeuse == 'o'){
 			orientationAfficher = "Ouest";
 		}
 		System.out.println("La nouvelle position de la tondeuse est : X= " + this.positionX + ",Y= " + this.positionY

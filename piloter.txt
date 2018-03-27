@@ -1,0 +1,5 @@
+5 5
+1 2 n
+gagagaa
+3 3 e
+aadaadadda
