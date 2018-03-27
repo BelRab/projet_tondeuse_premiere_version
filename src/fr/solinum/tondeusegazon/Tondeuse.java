@@ -22,7 +22,6 @@ public class Tondeuse {
 		
 		char directionTendeuse;
 		this.positionX=Character.getNumericValue(positionInitial.charAt(0));//test
-		System.out.println(this.positionX);
 		this.positionY=Character.getNumericValue(positionInitial.charAt(1));
 		directionTendeuse=positionInitial.charAt(2);
 		
